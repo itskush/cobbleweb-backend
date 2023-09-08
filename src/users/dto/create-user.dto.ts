@@ -29,12 +29,6 @@ export class CreateUserDto{
     @Length(2, 25)
     lastName: string;
 
-    @IsString()
-    role: string;
-
-    @IsBoolean()
-    active: boolean = true;
-
     @ValidateIf(o => o.photos !== undefined)
     @IsArray()
     @ArrayMinSize(4)

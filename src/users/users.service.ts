@@ -4,52 +4,77 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/users.entity';
 import { Client } from './entities/client.entity';
 import { CreateUserDto } from './dto/create-user.dto';
-import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
-    constructor(@InjectRepository(Client) private repo: Repository<Client>) {}
+  constructor(
+    @InjectRepository(Client)
+    private repo: Repository<Client>,
+  ) {}
 
-    async create(User: CreateUserDto){
-        const user = this.repo.create(User);
-        const createdUser = await this.repo.save(user);
+  /**
+   * Creates a new user by saving the provided user data to the database.
+   * @param userDto - The user data to create.
+   * @returns A success message if the user is created successfully.
+   */
+  async create(userDto: CreateUserDto): Promise<string> {
+    const user = this.repo.create(userDto);
+    const createdUser = await this.repo.save(user);
 
-        if (createdUser) { 
-            return 'User created successfully'
-        }
-
-        return 'User wasn\'t created successfully';
-    }
-    
-    async findOneById(id:number) {
-        return this.repo.findOneBy({id});
-    }
-
-    async findUserByEmail(email: string) {
-        return await  this.repo.find({where: { email }});
+    if (createdUser) {
+      return 'User created successfully';
     }
 
-    async findOneByEmail(email:string) {
-        return this.repo.find({where: { email }});
+    return 'User was not created successfully';
+  }
+
+  /**
+   * Finds a user by their ID.
+   * @param id - The ID of the user to find.
+   * @returns The user object if found.
+   */
+  async findOneById(id: number): Promise<Client> {
+    return this.repo.findOneBy({id});
+  }
+
+  /**
+   * Finds users by their email.
+   * @param email - The email to search for.
+   * @returns An array of users with matching email.
+   */
+  async findUsersByEmail(email: string): Promise<Client[]> {
+    return this.repo.find({ where: { email } });
+  }
+
+  /**
+   * Updates a user's attributes by their ID.
+   * @param id - The ID of the user to update.
+   * @param attrs - The attributes to update.
+   * @returns The updated user object.
+   * @throws NotFoundException if the user is not found.
+   */
+  async update(id: number, attrs: Partial<User>): Promise<Client> {
+    const user = await this.findOneById(id);
+    if (!user) {
+      throw new NotFoundException('User not found');
     }
 
-    async update(id: number, attrs: Partial<User>) {
-        const user = await this.findOneById(id)
-        if (!user) {
-            throw new NotFoundException('user not found');
-        }
+    Object.assign(user, attrs);
+    return this.repo.save(user);
+  }
 
-        Object.assign(user, attrs);
-        return this.repo.save(user);
+  /**
+   * Removes a user from the database by their ID.
+   * @param id - The ID of the user to remove.
+   * @returns A success message if the user is removed successfully.
+   * @throws NotFoundException if the user is not found.
+   */
+  async remove(id: number): Promise<string> {
+    const user = await this.findOneById(id);
+    if (!user) {
+      throw new NotFoundException('User not found');
     }
-
-    async remove(id: number) {
-        const user = await this.findOneById(id)
-        if (!user) {
-            throw new NotFoundException('user not found');
-        }
-
-        return this.repo.remove(user);
-    }
-
+    await this.repo.remove(user);
+    return 'User removed successfully';
+  }
 }

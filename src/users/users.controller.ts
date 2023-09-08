@@ -29,10 +29,11 @@ export class UsersController {
         if (!client) {
             throw new BadRequestException('User not found');
         }
-
+        //if we were to generate sensitive urls, we would use this preseigned url function that expires
+        /*
         if (client.photos && client.photos.length > 0) {
             for (let i = 0; i < client.photos.length; i++) {
-                // if we were to generate sensitive urls, we would use this preseigned url function that expires
+               
                 const url = await this.s3Service.generatePresignedUrl(
                     this.configService.get('AWS_BUCKET'),
                     client.photos[i].name
@@ -43,7 +44,8 @@ export class UsersController {
                     client.photos[i].url = 'No url found or object has been deleted from S3';
                 }
             }
-        }
+        } 
+        */
 
         // remove the password from the client object
         client.password = undefined;

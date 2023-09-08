@@ -22,17 +22,22 @@ export class S3Service {
   }
 
   async uploadFile(file, bucket) {
+    const uniqueKey = Date.now()+ '-' + file.originalname;
+
     const params = {
       Bucket: bucket,
-      Key: file.originalname,
+      Key: uniqueKey,
       Body: file.buffer,
       ACL: 'public-read',
     };
 
     const command = new PutObjectCommand(params);
     const response = await this.s3.send(command);
-
-    return response;
+    if(response.$metadata.httpStatusCode !== 200) {
+      throw new Error('Error uploading file to S3');
+    } else{
+      return uniqueKey;
+    }
   }
 
   async generatePresignedUrl(bucket, key) {

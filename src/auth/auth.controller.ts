@@ -55,11 +55,10 @@ export class AuthController {
           throw new HttpException('Invalid file type', HttpStatus.BAD_REQUEST);
         }
 
-        await this.s3Service.uploadFile(photo, this.configService.get('AWS_BUCKET'));
-
+        const key = await this.s3Service.uploadFile(photo, this.configService.get('AWS_BUCKET'));
         return {
           name: photo.originalname,
-          url: `https://${this.configService.get('AWS_BUCKET')}.s3.${this.configService.get('AWS_REGION')}.amazonaws.com/${photo.originalname}`,
+          url: `https://${this.configService.get('AWS_BUCKET')}.s3.${this.configService.get('AWS_REGION')}.amazonaws.com/${key}`,
         };
       }),
     );

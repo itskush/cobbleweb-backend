@@ -40,37 +40,37 @@ describe('AuthService', () => {
     it('should throw an error if no user is found with the provided email', async () => {
       jest.spyOn(usersService, 'findUsersByEmail').mockImplementation(() => Promise.resolve([]));
     
-      await expect(authService.validateUser({ email: 'test@example.com', password: 'testPassword' })).rejects.toThrow();
+      await expect(authService.validateUser({ email: 'myemail@gmail.com', password: 'password1235' })).rejects.toThrow();
     });
-    
+
     it('should return a user if valid password is provided', async () => {
       const user = new Client();
-      user.password = 'testPassword';
+      user.password = 'password1235';
 
       jest.spyOn(usersService, 'findUsersByEmail').mockImplementation(() => Promise.resolve([user]));
       jest.spyOn(bcrypt, 'compare').mockImplementation(() => Promise.resolve(true));
 
-      expect(await authService.validateUser({ email: 'test@example.com', password: 'testPassword' })).toEqual(user);
+      expect(await authService.validateUser({ email: 'myemail@gmail.com', password: 'password1235' })).toEqual(user);
     });
 
     it('should throw an error if invalid password is provided', async () => {
       const user = new Client();
-      user.password = 'testPassword';
+      user.password = 'password1235';
 
       jest.spyOn(usersService, 'findUsersByEmail').mockImplementation(() => Promise.resolve([user]));
       jest.spyOn(bcrypt, 'compare').mockImplementation(() => Promise.resolve(false));
 
-      await expect(authService.validateUser({ email: 'test@example.com', password: 'wrongPassword' })).rejects.toThrow();
+      await expect(authService.validateUser({ email: 'myemail@gmail.com', password: 'wrongPassword' })).rejects.toThrow();
     });
 
     it('should throw an error if bcrypt.compare throws an error', async () => {
       const user = new Client();
-      user.password = 'testPassword';
+      user.password = 'password1235';
     
       jest.spyOn(usersService, 'findUsersByEmail').mockImplementation(() => Promise.resolve([user]));
       jest.spyOn(bcrypt, 'compare').mockImplementation(() => Promise.reject(new Error('bcrypt error')));
     
-      await expect(authService.validateUser({ email: 'test@example.com', password: 'testPassword' })).rejects.toThrow();
+      await expect(authService.validateUser({ email: 'myemail@gmail.com', password: 'password1235' })).rejects.toThrow();
     });
 
     it('should throw an error if more than one user is found with the provided email', async () => {
@@ -78,7 +78,7 @@ describe('AuthService', () => {
       const user2 = new Client();
       jest.spyOn(usersService, 'findUsersByEmail').mockImplementation(() => Promise.resolve([user1, user2]));
     
-      await expect(authService.validateUser({ email: 'test@example.com', password: 'testPassword' })).rejects.toThrow();
+      await expect(authService.validateUser({ email: 'myemail@gmail.com', password: 'password1235' })).rejects.toThrow();
     });
   });
 
@@ -90,7 +90,7 @@ describe('AuthService', () => {
       jest.spyOn(authService, 'validateUser').mockImplementation(() => Promise.resolve(user));
       jest.spyOn(jwtService, 'sign').mockImplementation(() => 'testToken');
 
-      expect(await authService.login({ email: 'test@example.com', password: 'testPassword' })).toEqual({ access_token: 'testToken' });
+      expect(await authService.login({ email: 'myemail@gmail.com', password: 'password1235' })).toEqual({ access_token: 'testToken' });
     });
 
     it('should throw an error if jwtService.sign throws an error', async () => {
@@ -100,7 +100,7 @@ describe('AuthService', () => {
       jest.spyOn(authService, 'validateUser').mockImplementation(() => Promise.resolve(user));
       jest.spyOn(jwtService, 'sign').mockImplementation(() => { throw new Error('jwt error'); });
     
-      await expect(authService.login({ email: 'test@example.com', password: 'testPassword' })).rejects.toThrow();
+      await expect(authService.login({ email: 'myemail@gmail.com', password: 'password1235' })).rejects.toThrow();
     });
   });
 });

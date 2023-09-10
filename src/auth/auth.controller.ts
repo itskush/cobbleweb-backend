@@ -54,10 +54,10 @@ export class AuthController {
         if (photo.mimetype !== 'image/jpeg' && photo.mimetype !== 'image/png') {
           throw new HttpException('Invalid file type', HttpStatus.BAD_REQUEST);
         }
-
         const key = await this.s3Service.uploadFile(photo, this.configService.get('AWS_BUCKET'));
         return {
           name: photo.originalname,
+          key: key,
           url: `https://${this.configService.get('AWS_BUCKET')}.s3.${this.configService.get('AWS_REGION')}.amazonaws.com/${key}`,
         };
       }),
@@ -65,6 +65,6 @@ export class AuthController {
 
     createUserDto.photos = photoEntities;
 
-    return await this.userService.create(createUserDto);
+    return await this.userService.create(createUserDto, photoEntities);
   }
 }

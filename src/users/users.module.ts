@@ -10,6 +10,7 @@ import { Photo } from './entities/photo.entity';
 import { JwtStrategy } from '../auth/guards/jwt.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { S3Service } from '../auth/s3.service';
+import { PhotoService } from './photo.service';
 
 @Module({
   controllers: [UsersController],
@@ -24,6 +25,6 @@ import { S3Service } from '../auth/s3.service';
     }),
     PassportModule,
   ],
-  providers: [UsersService, JwtStrategy, S3Service, ConfigService],
+  providers: [UsersService, JwtStrategy, S3Service, ConfigService,PhotoService],
 })
 export class UsersModule {}

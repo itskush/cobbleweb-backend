@@ -6,7 +6,7 @@ import PreviewImages from "../PreviewImages";
 import classNames from "classnames";
 import { registerUser } from '../../lib/api';
 import { useRouter } from 'next/navigation';
-
+import { toast } from 'react-hot-toast';
 
 type FormData = {
   firstName: string;
@@ -49,12 +49,18 @@ const SignUpForm = () => {
     Array.from(data.photos).forEach((photo) => {
       formData.append('photos', photo);
     });
-
-    const response = await registerUser(formData);
-    if (response.error) {
-      setErrorMessage(response.error);
-    } else {
-      router.push('/success');
+    try {
+      const response = await registerUser(formData);
+      if (response.error) {
+      
+        setErrorMessage(response.error);
+      } else {
+        router.push('/success');
+      }
+    }
+    catch (error : any) {
+      toast.error(error.message)
+      console.log(error)
     }
   };
 

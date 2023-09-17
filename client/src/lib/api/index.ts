@@ -1,9 +1,7 @@
 import axios from 'axios';
-
 const apiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
 });
-
 
 interface LoginData {
   email: string;
@@ -33,8 +31,11 @@ export async function registerUser(userData: any): Promise<any> {
       }
     });
     return response.data;
-  } catch (error) {
-    throw error;
+  } catch (error :any) {
+    if (error.response) {
+      throw new Error(error.response.data.message);
+    }
+    throw new Error(error);
   }
 }
 

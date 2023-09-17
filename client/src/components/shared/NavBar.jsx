@@ -87,6 +87,7 @@ const NavBar = () => {
           </div>
           {token && ( 
                 <div className="w-1/4 navbar-end flex justify-end">
+                  {user && <p className="text-black text-lg mr-[2rem] bg-yellow-100 p-2"> {user.fullName}</p> }
                 <div className="dropdown dropdown-end">
                   <label tabIndex="0" className="btn btn-ghost btn-circle avatar min-h-[50px] min-w-[50px]">
                   <i className="">

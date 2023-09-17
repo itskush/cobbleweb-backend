@@ -44,8 +44,8 @@ let AuthController = class AuthController {
             throw new common_1.HttpException('At least 4 images should be uploaded', common_1.HttpStatus.BAD_REQUEST);
         }
         const photoEntities = await Promise.all(photos.map(async (photo) => {
-            if (photo.mimetype !== 'image/jpeg' && photo.mimetype !== 'image/png') {
-                throw new common_1.HttpException('Invalid file type', common_1.HttpStatus.BAD_REQUEST);
+            if (photo.mimetype !== 'image/jpeg' && photo.mimetype !== 'image/png' && photo.mimetype !== 'image/svg') {
+                throw new common_1.HttpException('Invalid file type, only png, svg or jpeg supported', common_1.HttpStatus.BAD_REQUEST);
             }
             const key = await this.s3Service.uploadFile(photo, this.configService.get('AWS_BUCKET'));
             return {

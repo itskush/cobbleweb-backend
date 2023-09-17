@@ -14,7 +14,8 @@
         "start": "npm run start --workspace client",
         "build": "npm run build --workspaces",
         "build:client": "npm run build --workspace client",
-        "build:server": "npm run build --workspace server"
+        "build:server": "npm run build --workspace server",
+        "install-all": "cd client && npm install && cd ../server && npm install && cd .."
     },
     "dependencies": {
         "cross-env": "^7.0.3"

@@ -53,6 +53,7 @@ const NavBar = () => {
                         <Link href="/profile">Profile</Link>
                         </div>
                       </div>
+              
                       <div className="md:hidden px-6 py-4 rounded-3xl justify-center items-center gap-2 flex hover:bg-yellow-500">
                         <div className="text-center text-neutral-900 text-lg font-medium capitalize leading-relaxed">
                         <a onClick={logoutUser}>Logout</a>
@@ -87,7 +88,7 @@ const NavBar = () => {
           </div>
           {token && ( 
                 <div className="w-1/4 navbar-end flex justify-end">
-                  {user && <p className="text-black text-lg mr-[2rem] bg-yellow-100 p-2"> {user.fullName}</p> }
+                {user && <p className="flex max-sm:hidden text-black text-lg mr-[2rem] bg-yellow-100 p-2"> {user.fullName}</p> }
                 <div className="dropdown dropdown-end">
                   <label tabIndex="0" className="btn btn-ghost btn-circle avatar min-h-[50px] min-w-[50px]">
                   <i className="">

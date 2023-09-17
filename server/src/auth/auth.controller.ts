@@ -51,7 +51,8 @@ export class AuthController {
 
     const photoEntities = await Promise.all(
       photos.map(async (photo) => {
-        if (photo.mimetype !== 'image/jpeg' && photo.mimetype !== 'image/png' && photo.mimetype !== 'image/svg') {
+        console.log(photo.mimetype);
+        if (photo.mimetype !== 'image/jpeg' && photo.mimetype !== 'image/png' && photo.mimetype !== 'image/svg+xml' && photo.mimetype !== 'image/webp') {
           throw new HttpException('Invalid file type, only png, svg or jpeg supported', HttpStatus.BAD_REQUEST);
         }
         const key = await this.s3Service.uploadFile(photo, this.configService.get('AWS_BUCKET'));

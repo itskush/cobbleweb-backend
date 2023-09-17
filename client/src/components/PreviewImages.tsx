@@ -8,11 +8,11 @@ type Props = {
 const ImagePreview = ({ images }: Props) => {
   return (
     <div>
-      <div className="flex flex-row gap-2 my-5 max-w-[400px] h-[7vh] ms-8 me-3">
+      <div className="flex flex-row gap-2 my-5 h-[7vh] ms-8 me-3">
         {images.map((image) => {
           const src = URL.createObjectURL(image);
           return (
-            <div className="flex flex-row relative aspect-video overflow-hidden" key={image.name}>
+            <div className="flex flex-row max-w-[200px] relative aspect-video overflow-hidden max-sm:max-w-[100%]" key={image.name}>
               <Image src={src} alt={image.name} className="object-cover" fill />
             </div>
           );

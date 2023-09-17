@@ -1,16 +1,27 @@
 import LoginForm from "../../../components/form/LoginForm";
-
+import Link from "next/link";
+import Image from "next/image";
 const Login = () => {
   return (
-    <div className="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-      <div className="flex items-center justify-center h-screen">
-        <div className="main-page-wrapper flex min-w-[100%] items-center justify-center p0">
-        <div className="bg-white px-10 py-8 rounded-lg w-full max-w-md">
-          <h1 className="text-3xl font-medium text-center mb-4 text-black">Login</h1> 
+    <div className="white-onboarding-container flex justify-center align-center md:mx-auto">
+      <div className="form-wrapper !min-w-[100%] mx-auto my-auto justify-center items-center flex flex-col">
+        <div className="flex flex-col items-center">
+              <div className="logo p-1">
+                <Link href="/">
+                  <Image  width="87" height="40" src="/images/logo/logo.png" alt="logo" />
+                </Link>
+              </div>
+          </div>
+          <div className="flex flex-row w-full items-center mx-auto p-5  gap-[4rem] justify-center ">
+            <div className=" flex flex-colmt-30 items-center flex-row flex p-1">
+                <p className="header-info pt-30 pb-50">
+                  Don't have an account? 
+                  <Link className="ml-2 font-bold underline" href="/register"> Register</Link>
+                </p>
+            </div>
+          </div>
           <LoginForm />
         </div>
-        </div>
-      </div>
     </div>
   );
 

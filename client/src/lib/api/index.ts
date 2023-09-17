@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
 });
 
 
@@ -58,8 +58,12 @@ export async function loginUser(credentials: LoginData): Promise<any> {
     }
     return response.data;
 
-  } catch (error) {
-    throw new Error('Failed to login');
+  } catch (error : any) {
+    if (error.response) {
+      throw new Error(error.response.data.message);
+    } else {
+      throw new Error(error);
+    }
   }
 }
 
@@ -68,7 +72,7 @@ export async function loginUser(credentials: LoginData): Promise<any> {
  * @param token - The access token used for authentication.
  * @returns The user profile data retrieved from the API.
  */
-export async function getUserProfile(token: string): Promise<User> {
+export async function getUserProfile(token: any): Promise<User> {
   try {
     apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     const response = await apiClient.get<User>('/api/users/me');

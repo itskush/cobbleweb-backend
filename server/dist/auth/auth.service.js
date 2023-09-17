@@ -32,13 +32,12 @@ let AuthService = class AuthService {
     async validateUser(userLoginDto) {
         const { email, password } = userLoginDto;
         const [user] = await this.usersService.findUsersByEmail(email);
-        console.log(user);
         if (!user) {
-            throw new common_1.UnauthorizedException();
+            throw new common_1.UnauthorizedException('No user found with this email');
         }
         const isValidPassword = await bcrypt.compare(password, user.password);
         if (!isValidPassword) {
-            throw new common_1.UnauthorizedException();
+            throw new common_1.UnauthorizedException('Invalid password');
         }
         return user;
     }

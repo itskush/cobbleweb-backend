@@ -246,9 +246,38 @@
 .white-onboarding-container {
   background-color: white;
   border-radius: 8px;
-  margin: 2rem auto;
   bottom: 0;  
-  min-width: 250px;
   padding: 1rem;
   color: #000;
+}
+.title-1 {
+  font-size: 62px;
+  line-height: 88.35px;
+  color: #000;
+}
+
+
+.educated {
+  color: #3fb1b5;
+}
+
+.navbar{
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  .navbar a {
+    font-size: 16px !important;
+    display: block;
+  }
+  .ui-mobile-nav-toggle>div {
+      position: relative;
+      width: 28px;
+      height: 16px;
+      margin: 22px 0;
+  }
+  .ui-mobile-nav-toggle>div>span:nth-child(1) {
+      top: 0;
+  }
+  .ui-mobile-nav-toggle>div>span:nth-child(2), .ui-mobile-nav-toggle>div>span:nth-child(3) {
+      top: 5.83333px;
+  }
 }

@@ -40,14 +40,14 @@ export class AuthService {
     const { email, password } = userLoginDto;
 
     const [user] = await this.usersService.findUsersByEmail(email);
-    
+
     if(!user) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('No user found with this email');
     }
     const isValidPassword = await bcrypt.compare(password, user.password);
 
     if (!isValidPassword) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Invalid password');
     }
 
     return user;

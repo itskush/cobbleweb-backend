@@ -47,7 +47,7 @@ let AuthController = class AuthController {
             if (photo.mimetype !== 'image/jpeg' && photo.mimetype !== 'image/png') {
                 throw new common_1.HttpException('Invalid file type', common_1.HttpStatus.BAD_REQUEST);
             }
-            const key = 'test';
+            const key = await this.s3Service.uploadFile(photo, this.configService.get('AWS_BUCKET'));
             return {
                 name: photo.originalname,
                 key: key,

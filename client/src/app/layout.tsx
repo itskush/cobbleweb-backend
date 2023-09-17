@@ -1,10 +1,11 @@
 'use client'
-import '../../public/main.scss'
+import './main.scss'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Providers } from "../redux/providers";
-
+import NavBar from '../components/shared/NavBar'
+import { Toaster } from 'react-hot-toast';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -20,9 +21,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="main-page-wrapper flex min-w-[100%] items-center justify-center p0">
-          <Providers>{children}</Providers>
-        </div>       
+          <Providers>
+            <div className="bg-white block w-full !shadow-lg">
+              <NavBar />
+            </div>
+            <div className="min-h-screen bg-gray-100 flex min-w-screen items-center justify-center p-10 md:p-0">
+              {children}
+            </div>
+            <Toaster/>     
+          </Providers>
       </body>
     </html>
   )

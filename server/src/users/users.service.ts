@@ -28,10 +28,11 @@ export class UsersService {
     }
     
     userDto.photos = addedPhotos;
-    const user = this.repo.create(userDto);
+    const user = await this.repo.create(userDto);
     const createdUser = await this.repo.save(user);
     if (createdUser) {
       return {
+        status: 201,
         message: 'User was created successfully',
       };
     }

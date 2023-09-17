@@ -1,0 +1,46 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 5000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.3.1",
+    "@popperjs/core": "^2.11.8",
+    "@react-native-async-storage/async-storage": "^1.19.3",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@types/node": "20.6.0",
+    "@types/react": "18.2.21",
+    "@types/react-dom": "18.2.7",
+    "aos": "^2.3.4",
+    "axios": "^1.5.0",
+    "classnames": "^2.3.2",
+    "daisyui": "^3.7.4",
+    "eslint": "8.49.0",
+    "eslint-config-next": "13.4.19",
+    "next": "13.4.19",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.46.1",
+    "react-hot-toast": "^2.4.1",
+    "react-redux": "^8.1.2",
+    "react-responsive-carousel": "^3.2.23",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.4.2",
+    "redux-toolkit": "^1.1.2",
+    "reduxjs-toolkit-persist": "^7.2.1",
+    "sass": "^1.66.1",
+    "typescript": "5.2.2",
+    "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.15",
+    "concurrently": "^8.2.1",
+    "postcss": "^8.4.29",
+    "tailwindcss": "^3.3.3"
+  }
+}

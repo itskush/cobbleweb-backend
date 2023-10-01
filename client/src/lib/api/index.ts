@@ -1,21 +1,10 @@
 import axios from 'axios';
+import { LoginData, User } from '../../types';
+
+
 const apiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
 });
-
-interface LoginData {
-  email: string;
-  password: string;  
-}
-
-interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  photos: [];
-}
-
 /**
  * Sends a POST request to register a user.
  * @param userData - An object containing the user's registration data.

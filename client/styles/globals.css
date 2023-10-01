@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: "Space Grotesk", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  span {
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+  }
+}
+
+@layer components {
+  .container-web {
+    max-width: 1398px;
+    margin: 0 auto;
+  }
+
+  .layout-sidebar {
+    overflow-y: scroll;
+  }
+  .container-dashboard {
+    padding: 16px 30px;
+  }
+
+  @media (max-width: 992px) {
+    .container-dashboard {
+      padding: 16px 24px;
+    }
+  }
+
+  .btn-primary {
+    padding: 16px 24px;
+    background-color: #f4c247;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #131313;
+  }
+
+  .btn-outline {
+    border-radius: 4px;
+    padding: 16px 24px;
+    border: 1px solid #f4c247;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    color: #131313;
+  }
+
+  .checkbox-bg-black {
+    accent-color: #131313;
+  }
+
+  .card-auth {
+    border: 1px solid #f4c247;
+    background: #fff;
+    box-shadow: 8px 8px 0px 0px #1e1e1e;
+  }
+
+  .circle {
+    border-radius: 9999px;
+    width: 8px;
+    height: 8px;
+    background-color: #92f3d7;
+    content: " ";
+  }
+
+  .truncate-text-1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    max-width: 100%;
+  }
+
+  .truncate-text-2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-width: 100%;
+  }
+}
+
+@layer utilities {
+  .text-nav-inactive {
+    filter: invert(73%) sepia(0%) saturate(73%) hue-rotate(189deg)
+      brightness(103%) contrast(94%);
+  }
+  .text-fff {
+    filter: invert(100%) sepia(93%) saturate(3%) hue-rotate(254deg)
+      brightness(108%) contrast(100%);
+  }
+  .text-6d6d6d {
+    filter: invert(42%) sepia(8%) saturate(11%) hue-rotate(337deg)
+      brightness(97%) contrast(85%) !important;
+  }
+
+  .text-3a3a3a {
+    filter: invert(22%) sepia(1%) saturate(0%) hue-rotate(58deg) brightness(98%)
+      contrast(95%) !important;
+  }
+  .text-dotprim {
+    filter: invert(85%) sepia(46%) saturate(313%) hue-rotate(99deg)
+      brightness(99%) contrast(93%);
+  }
+  .text-dotsec {
+    filter: invert(78%) sepia(38%) saturate(821%) hue-rotate(343deg)
+      brightness(105%) contrast(91%);
+  }
+
+  .text-10 {
+    font-size: 10;
+  }
+  .text-11 {
+    font-size: 11px;
+  }
+  .text-12 {
+    font-size: 12px;
+  }
+  .text-13 {
+    font-size: 13px;
+  }
+  .text-14 {
+    font-size: 14px;
+  }
+  .text-18 {
+    font-size: 18px;
+  }
+  .text-20 {
+    font-size: 20px;
+  }
+  .text-40 {
+    font-size: 40px;
+  }
+  .text-42 {
+    font-size: 42px;
+  }
+
+  .text-32 {
+    font-size: 32px;
+  }
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+.rmdp-input {
+  width: 246px !important;
+  padding: 23px !important;
+  border: none !important;
+  font-weight: 500 !important;
+  color: #6d6d6d !important;
+}
+
+.rmdp-range-hover.start,
+.rmdp-range.start {
+  background-color: #f4c247 !important;
+  color: #131313 !important;
+}
+
+.rmdp-range-hover.start,
+.rmdp-range.end {
+  background-color: #f4c247 !important;
+  color: #131313 !important;
+}
+
+.rmdp-range {
+  background-color: #fae6b4 !important;
+  box-shadow: none !important;
+  color: #605e63 !important;
+}
+
+.rmdp-calendar {
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
+.rmdp-week-day {
+  color: #605e63 !important;
+  font-weight: 500;
+}
+
+.rmdp-arrow {
+  border: solid #605e63 !important;
+  border-width: 0 2px 2px 0 !important;
+}
+
+.rmdp-header-values {
+  color: #605e63 !important;
+  font-weight: 500 !important;
+}
+
+.rmdp-day,
+.rmdp-week-day {
+  color: #605e63 !important;
+}
+
+.carousel .thumbs-wrapper{
+  margin: 5px !important;
+}

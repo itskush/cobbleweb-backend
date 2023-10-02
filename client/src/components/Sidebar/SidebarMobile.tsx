@@ -19,40 +19,40 @@ import Image from "next/image";
 
 const dashboardRoutes = [
   {
-    title: "Dashboard",
-    nav: "/dashboard",
+    title: "Profile",
+    nav: "/profile",
     icon: home,
   },
   {
     title: "Browse",
-    nav: "/browse",
+    nav: "#",
     icon: browse,
   },
   {
     title: "Explore",
-    nav: "/explore",
+    nav: "#",
     icon: explore,
   },
   {
     title: "Posts",
-    nav: "/posts",
+    nav: "#",
     icon: posts,
   },
 
   {
     title: "Messages",
-    nav: "/messages",
+    nav: "#",
     icon: messages,
   },
 
   {
     title: "Supporters",
-    nav: "/supporters",
+    nav: "#",
     icon: supporters,
   },
   {
     title: "Payouts",
-    nav: "/payouts",
+    nav: "#",
     icon: payouts,
   },
 ];
@@ -61,7 +61,7 @@ export default function SidebarMobile({ changeActiveHandler, active }: any) {
   const router = useRouter();
   const pathname = usePathname();
   const dispatch = useAppDispatch();
-  
+
   const logoutUser = async () => {
     await dispatch({
       type: PURGE,

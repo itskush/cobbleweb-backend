@@ -44,7 +44,7 @@ const validationSchema = yup.object().shape({
 export default function Signup() {
   const router = useRouter();
   const user = useAppSelector((state) => state.user);
-
+  const [active, setActive] = useState(true)
   if (user.access_token !== '')
   {
     router.push('/profile')
@@ -65,10 +65,12 @@ export default function Signup() {
 
   
   const onSubmit = async (formData: any) => {
+    await setActive(!active);
     try {
       const response = await registerUser(formData);
       if (response.error) {
         toast.error(response.error);
+        await setActive(!active);
       } else {
         router.push('/success');
       }
@@ -76,6 +78,7 @@ export default function Signup() {
     catch (error : any) {
       toast.error(error.message)
       console.log(error)
+      await setActive(!active);
     }
   };
 
@@ -197,7 +200,7 @@ export default function Signup() {
                 <span className="text-[#66AA97]">Terms & Conditions</span>
               </p>
             </div>
-            <button className="btn-primary w-full" type="submit">
+            <button className={`btn-primary w-full ${active ?'' : 'btn-primary w-full bg-gray-300'}`} type="submit" disabled={!active}>
               Sign Up
             </button>
           </form>

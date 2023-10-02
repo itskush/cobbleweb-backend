@@ -6,7 +6,7 @@ import eye from "../../../../public/static/icons/eye.svg";
 import apple from "../../../../public/static/icons/brands/apple.svg";
 import google from "../../../../public/static/icons/brands/google.svg";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, use, useEffect, useState } from "react";
 import Link from "next/link";
 import Layout from "@/components/Layout/Layout";
 import { useForm } from "react-hook-form";
@@ -32,11 +32,6 @@ const validationSchema = yup.object().shape({
 export default function Signin() {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.user);
-  if (user.access_token !== '')
-  {
-    router.push('/profile')
-  }
   const {
     register,
     handleSubmit,

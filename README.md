@@ -1,4 +1,4 @@
-# NestJS Application - CobbleWeb Assignment Backend and React
+# NestJS Application
 
 This is a full stack application built with Nextjs13, NestJS v10.0, PostgreSQL, and TypeORM. The application includes user registration, authentication with JWT tokens, and photo upload features.
 
